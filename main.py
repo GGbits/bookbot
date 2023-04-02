@@ -33,9 +33,15 @@ class Book:
     def get_letter_count(self):
         return self.__letter_count
 
-
-def report(letter_dict):
-    print("test:")
+    def report(self):
+        alpha_list = list(self.__letter_count.items())
+        alpha_list.sort(reverse=True, key=lambda a: a[1])
+        print(f"--- Begin report of {self.path} ---")
+        print(f"{self.__word_count} words found in the document\n")
+        for k,v in alpha_list:
+            if k.isalpha():
+                print(f"The '{k}' character was found {v} times")
+        print("--- End report ---")
 
 
 def main():
@@ -43,6 +49,7 @@ def main():
     print(book.get_text())
     print(f"number of words in book: {book.get_words()}")
     print(f"{book.get_letter_count()}")
+    book.report()
 
 if __name__ == "__main__":
     main()
